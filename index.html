@@ -1,10 +1,67 @@
 <!DOCTYPE html>
  <html>
   <head>
+    <!-- meta for the browser to allow for mobiel first design -->
+    <meta charset="utf-8"/> <!--This ensures that the web page can display characters from various languages and character sets.-->
+    
+    <!--Sets the viewport properties for the web page. The viewport determines how the web page is displayed on different devices and screen sizes. 
+    The "initial-scale=1" property sets the initial zoom level of the page to 100%, while the "maximum-scale=1" and "user-scalable=no" properties 
+    prevent users from zooming in or out of the page using pinch or zoom gestures on their devices.-->
+    <meta name="viewport" content="initial-scale=1, maximum-sclale=1, user-scalable=no"/> 
+
    <title>Data Collector for AGOL</title>
+
+   <!-- To make the map fill the browser window -->
+    <style>
+        html,
+        body,
+        #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        }
+    </style>
+
+    <!-- References the main.css style sheet, which contains styles specific to Esri widgets and components. -->
+    <!-- 'rel' means "relationship" between the current HTML document and the linked resource -->
+    <!-- 'href' means hyperlink reference -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.26/esri/themes/light/main.css"/>
+    
+    <!-- Loading the ArcGIS Maps SDK for JavaScript from a CDN. When new versions of the API are released, update the version number to match the newly released version. -->
+    <script src="https://js.arcgis.com/4.26/"></script>
+
+    <!-- Loading JS modules -->
+    <script> 
+        // esri/Map - loads code specific to creating a map
+        // esri/views/MapView - loads code that allows for viewing the map in 2D
+        // 'require' loads JS modules asynchronously.  
+        // The function (Map, MapView) => { ... } runs after the modules are loaded, with each module passed in as an argument.
+        require(["esri/Map", "esri/views/MapView"], (Map, MapView) => { 
+            
+            // This module creates a map object that defines the basemap and operational layers.
+            const map = new Map({
+                basemap: "satellite"
+            })
+
+            // Creates a MapView instance → the 2D view that renders your Map object in the browser.
+            // Without this, i'd have a map defined in memory, but nothing would be drawn to the screen.
+            // “Take my Map object and render it inside the HTML element called viewDiv as a 2D map.”
+            const view = new MapView({
+                container: "viewDiv",  // The HTML element id where the map will appear.  Tells the view where (which DOM node) in the HTML to put the map.  Looks for a <div> with id="viewDiv"
+                map: map               // The map object (from earlier) to display inside the viewDiv.
+            })
+        });
+    </script>
+
   </head>
   <body>
    <!-- hello world text to check if everything worked -->
-   <h1>Hello World! I am ready to collect data.</h1>
+   <!-- <h1>Hello World! I am ready to collect data.</h1> -->
+    
+   <!-- <div> (short for division) is a generic HTML block element. It doesn’t show anything by itself — it’s just a rectangle you can style. -->
+   <div id="viewDiv"></div> 
+
+
   </body>
 </html>
