@@ -38,7 +38,7 @@
             // esri/views/MapView - loads code that allows for viewing the map in 2D
             // 'require' loads JS modules asynchronously.  
             // The function (Map, MapView) => { ... } runs after the modules are loaded, with each module passed in as an argument.
-            require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/Locate"], (esriConfig, Map, MapView, Locate) => { 
+            require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/Locate", "esri/widgets/Search"], (esriConfig, Map, MapView, Locate, Search) => { 
                 
                 // Log into the API with a private key
                 esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurC-WNby9xVB5CaUbYmSkdtsZmMyGnfH1JuHkPFwFFSBd3Z-v-N7m_s6f1dmRgKVLamcFHqSo0cttTR09tKsFzmbXZUhJIfKzl2R6HLQtKWGyGlzHobrqUHrwEOtLR9miyCr3AH4LGIs4bD8J_IfjNZJFYZiID06JxdIjFa_CX5wLcu2d2_5Pr2huNg7-z1mKuSnOsU5nBktIt9t_XxG-4s-ytgy_1uafScxdrTypBn4BAT1_UUjVT5i4";
@@ -67,6 +67,17 @@
 
                 view.ui.add(locateBtn, {                // Add the locate widget to the view's built-in UI
                     position: "top-left"                // Position the widget in the top-left corner of the map
+                });
+
+                // Adding an Address or Search bar, using Search Widget.
+                const searchWidget = new Search({
+                    // view: (on the left) >  This is the property name of the Locate widget’s options.
+                    // view (on the right) >  This is the variable created earlier in the code.
+                    view: view                          // Tell the Search widget which MapView it shoudl control. 
+                });
+
+                view.ui.add(searchWidget, {
+                    position: "top-right"
                 });
 
             });
