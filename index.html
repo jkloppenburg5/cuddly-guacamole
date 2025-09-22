@@ -21,6 +21,26 @@
         height: 100%;
         width: 100%;
         }
+
+        /* Adding CSS for Survey button. */
+        .addRecordBtn {
+        position: absolute;
+        z-index: 10;
+        top: 60px;   /* push it down below the search widget */
+        right: 10px;
+        background-color: #feffff;
+        color: rgb(132, 132, 132);
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        text-decoration: none;
+        }
+
+        .addRecordBtn:hover {
+        background-color: #005a87;
+        }
     </style>
 
     <!-- References the main.css style sheet, which contains styles specific to Esri widgets and components. -->
@@ -98,6 +118,9 @@
    <!-- hello world text to check if everything worked -->
    <!-- <h1>Hello World! I am ready to collect data.</h1> -->
     
+   <!-- Adding the Survey button. -->
+    <a href="https://arcg.is/1n10u40"target="_blank" class="addRecordBtn">Add Record</a>
+
    <!-- <div> (short for division) is a generic HTML block element. It doesn’t show anything by itself — it’s just a rectangle you can style. -->
    <div id="viewDiv"></div> 
 
